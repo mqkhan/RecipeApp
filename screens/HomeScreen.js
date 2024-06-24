@@ -20,7 +20,7 @@ const HomeScreen = ({navigation}) => {
         const storedRecipes = await AsyncStorage.getItem('recipes');
         if (storedRecipes) setRecipes(JSON.parse(storedRecipes));
       } catch (error) {
-        console.error(error);
+        console.error('Error loading recipes:', error);
       }
     };
     loadRecipes();
@@ -35,11 +35,13 @@ const HomeScreen = ({navigation}) => {
 
   const handleDelete = async id => {
     try {
+      console.log('Deleting recipe with id:', id);
       const newRecipes = recipes.filter(recipe => recipe.id !== id);
       setRecipes(newRecipes);
       await AsyncStorage.setItem('recipes', JSON.stringify(newRecipes));
+      console.log('Recipe deleted successfully');
     } catch (error) {
-      console.error(error);
+      console.error('Error deleting recipe:', error);
     }
   };
 

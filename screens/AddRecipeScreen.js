@@ -24,7 +24,7 @@ const AddRecipeScreen = ({navigation}) => {
       await AsyncStorage.setItem('recipes', JSON.stringify(updatedRecipes));
       navigation.navigate('Home');
     } catch (error) {
-      console.error(error);
+      console.error('Error saving recipe:', error);
     }
   };
 
